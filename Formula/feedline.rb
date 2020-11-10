@@ -4,8 +4,8 @@
 class Feedline < Formula
   desc ""
   homepage ""
-  url "https://github.com/gruntbatch/feedline/archive/v0.6.0.tar.gz"
-  sha256 "84fc9e155820e2af8fef85cd8991947eda7341371eeacac97f078d5dae79e031"
+  url "https://github.com/gruntbatch/feedline/archive/v0.7.0.tar.gz"
+  sha256 "1c11ea4b0219d5944fbdb555165570f6f3c7cdb1566d6c9f87fdd827144593bf"
   license ""
 
   depends_on "go" => :build
@@ -17,9 +17,7 @@ class Feedline < Formula
     system "go", "install", "-ldflags", "-s -w -X main.version=#{version}", "./..."
 
     libexec.mkpath
-    system "cp", "base.gohtml", libexec
-    system "cp", "feed.gohtml", libexec
-    system "cp", "channels.gohtml", libexec
+    system "cp", "-r", "web", libexec
   end
   
   def plist
@@ -33,8 +31,8 @@ class Feedline < Formula
             <key>ProgramArguments</key>
             <array>
                 <string>#{opt_bin}/feedline</string>
-                <string>-templatedir</string>
-                <string>#{libexec}</string>
+                <string>-webdir</string>
+                <string>#{libexec}/web</string>
                 <string>-addr</string>
                 <string>localhost:8579</string>
             </array>
