@@ -4,8 +4,8 @@
 class Feedline < Formula
   desc ""
   homepage ""
-  url "https://github.com/gruntbatch/feedline/archive/v0.8.0.tar.gz"
-  sha256 "31379580391440ef03f798bbd31f977a9724f038451f3073b59b512475173c92"
+  url "https://github.com/gruntbatch/feedline/archive/v0.8.1.tar.gz"
+  sha256 "ffb2e64cbbdb250d8ac3c68a9d26240afce74f61c0fbce2e9cfa1271b7603870"
   license ""
 
   depends_on "go" => :build
