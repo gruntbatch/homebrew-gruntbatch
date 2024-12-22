@@ -19,36 +19,12 @@ class Feedline < Formula
     libexec.mkpath
     system "cp", "-r", "web", libexec
   end
-  
-  def plist
-    <<~EOS
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>Label</key>
-            <string>#{plist_name}</string>
-            <key>ProgramArguments</key>
-            <array>
-                <string>#{opt_bin}/feedline</string>
-                <string>-webdir</string>
-                <string>#{libexec}/web</string>
-                <string>-addr</string>
-                <string>localhost:8579</string>
-                <string>-interval</string>
-                <string>60m</string>
-            </array>
-            <key>RunAtLoad</key>
-            <true />
-            <key>KeepAlive</key>
-            <true />
-            <key>StandardErrorPath</key>
-            <string>/tmp/#{plist_name}.stderr.log</string>
-            <key>StandardOutPath</key>
-            <string>/tmp/#{plist_name}.stdout.log</string>
-        </dict>
-    </plist>
-    EOS
+
+  service do
+    run [opt_bin/"feedline", "-webdir", libexec/"web", "-addr", "localhost:8579", "-interval", "60m"]
+    keep_alive true
+    log_path "/tmp/feedline.stdout.log"
+    error_log_path "/tmp/feedline.stderr.log"
   end
 
   test do
