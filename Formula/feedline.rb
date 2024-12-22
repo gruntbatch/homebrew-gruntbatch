@@ -4,8 +4,8 @@
 class Feedline < Formula
   desc ""
   homepage ""
-  url "https://github.com/gruntbatch/feedline/archive/v0.8.1.tar.gz"
-  sha256 "ffb2e64cbbdb250d8ac3c68a9d26240afce74f61c0fbce2e9cfa1271b7603870"
+  url "https://codeload.github.com/gruntbatch/feedline/tar.gz/refs/tags/v0.9.1"
+  sha256 "dae98add3e63a97ff1538baa90e15969db2db99f0548e2af76ae227e9686cb6d"
   license ""
 
   depends_on "go" => :build
@@ -35,6 +35,8 @@ class Feedline < Formula
                 <string>#{libexec}/web</string>
                 <string>-addr</string>
                 <string>localhost:8579</string>
+                <string>-interval</string>
+                <string>60m</string>
             </array>
             <key>RunAtLoad</key>
             <true />
